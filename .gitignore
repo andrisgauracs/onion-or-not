@@ -1,0 +1,19 @@
+# secrets
+.env
+
+# downloaded models
+models/
+*.gguf
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/

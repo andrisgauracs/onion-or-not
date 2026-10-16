@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onion or Not?</title>
+<meta name="description" content="Is this headline satire from The Onion, or real news? Ask Jev and AnyJev side by side.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧅</text></svg>">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <div class="brand"><span class="mark" aria-hidden="true">🧅</span><h1>Onion or Not?</h1></div>
+    <p class="tagline">Paste a headline. <b>Jev</b> and <b>AnyJev</b> each guess whether it's satire from The Onion or real news, and how sure they are.</p>
+  </header>
+
+  <section class="ask card">
+    <form id="form" autocomplete="off">
+      <label for="headline" class="sr">Headline</label>
+      <textarea id="headline" rows="2" maxlength="300" spellcheck="false"
+        placeholder="e.g. Area man still waiting for software update to fix his life"></textarea>
+      <div class="ask-row">
+        <label class="check"><input type="checkbox" id="swap"> <span>Also ask with the options swapped</span>
+          <span class="hint" title="Asks “real news or satire?” as well as “satire or real news?”. A good decision model gives the same answer both ways.">?</span></label>
+        <button type="submit" id="go" class="btn primary">Ask <span aria-hidden="true">→</span></button>
+      </div>
+    </form>
+    <div class="examples"><span>Try one:</span><div id="examples"></div></div>
+  </section>
+
+  <section id="results" class="results"></section>
+
+  <section class="history" id="historyBox" hidden>
+    <div class="h-head"><h2>Your recent headlines</h2><button class="btn ghost small" id="clear">Clear</button></div>
+    <ul id="history"></ul>
+  </section>
+
+  <footer class="foot">
+    <details>
+      <summary>How does this work?</summary>
+      <div class="about">
+        <p>Every model gets the same question about the headline text only: <i>“Is this headline satire from The Onion, or real news?”</i> with the options <i>satire</i> and <i>real news</i>. The bars show each model's probability for each option.</p>
+        <p><b>Jev</b> is TypeSafe's hosted decision model. It runs in the cloud with your own TypeSafe API key and costs a fraction of a cent per question.</p>
+        <p><b>AnyJev L0</b> runs Qwen3-8B on your own computer through llama.cpp and reads its answer with <a href="https://github.com/nokia-applied-research/AnyJev" target="_blank" rel="noopener">AnyJev</a>. Level L0 asks with the options in every order and removes the model's built-in lean toward one option, so swapping the options can't change its answer.</p>
+        <p><b>Qwen3-8B raw</b> is the same model on your computer with no correction, so you can see what AnyJev changes.</p>
+        <p class="small">Not affiliated with TypeSafe, the AnyJev authors, Alibaba's Qwen team or The Onion. Headlines you type go to TypeSafe's API for Jev; the open model never leaves your machine.</p>
+      </div>
+    </details>
+  </footer>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>

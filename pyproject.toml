@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "onion-or-not"
+version = "0.1.0"
+description = "Is this headline from The Onion, or real news? Ask Jev (TypeSafe's hosted decision model) and AnyJev (an open model on your own machine) side by side."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = [
+    # the llama.cpp backend isn't in a PyPI release of anyjev yet, so this pins a commit on main
+    "anyjev[llamacpp] @ git+https://github.com/nokia-applied-research/AnyJev@b03158e9ba18e84c01054aaa393481925088db07",
+    "transformers>=4.53",          # the Qwen3 tokenizer AnyJev renders its prompts with (no PyTorch needed)
+    "typesafe-sdk>=0.7.5",
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "python-dotenv>=1.0",
+    "huggingface_hub>=0.23",
+]
+
+[project.scripts]
+onion-or-not = "onion_or_not.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["onion_or_not*"]
+
+[tool.setuptools.package-data]
+onion_or_not = ["static/*"]
